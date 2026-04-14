@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Te Amo ❤️</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Nunito:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ══ PANTALLA 1: INTRO ══ -->
+  <div id="screen-intro" class="screen active">
+
+    <!-- Fondo pabellón decorativo -->
+    <div class="intro-arena">
+      <div class="arena-ceiling"></div>
+      <div class="arena-lights">
+        <div class="arena-light"></div>
+        <div class="arena-light"></div>
+        <div class="arena-light"></div>
+        <div class="arena-light"></div>
+        <div class="arena-light"></div>
+      </div>
+      <div class="arena-stands" id="intro-stands"></div>
+      <div class="arena-court">
+        <div class="court-lines">
+          <div class="court-center-line"></div>
+          <div class="court-center-circle"></div>
+          <div class="court-three-left"></div>
+          <div class="court-three-right"></div>
+          <div class="court-paint-left"></div>
+          <div class="court-paint-right"></div>
+          <div class="court-logo">🏀</div>
+        </div>
+        <div class="backboard backboard-left"><div class="hoop"></div></div>
+        <div class="backboard backboard-right"><div class="hoop"></div></div>
+      </div>
+    </div>
+
+    <div class="intro-content">
+      <div class="heart-big">💗</div>
+      <h1 class="title">A veces peleamos...</h1>
+      <p class="subtitle">pero nunca olvido lo mucho<br/>que te amo ❤️</p>
+      <button class="btn-main" id="btn-play">Jugar</button>
+    </div>
+  </div>
+
+  <!-- ══ PANTALLA 2: JUEGO ══ -->
+  <div id="screen-game" class="screen">
+
+    <div id="game-header">
+      <span>💕 Amor: <span id="score">0</span></span>
+      <span>Meta: 10</span>
+    </div>
+
+    <div id="game-area">
+
+      <!-- Fondo cancha Fórum de Valencia -->
+      <div id="court-bg">
+        <div class="bg-ceiling"></div>
+        <div class="bg-lights">
+          <div class="bg-light"></div>
+          <div class="bg-light"></div>
+          <div class="bg-light"></div>
+          <div class="bg-light"></div>
+        </div>
+        <div class="bg-stands" id="game-stands"></div>
+        <div class="bg-court">
+          <div class="bg-court-line-h"></div>
+          <div class="bg-court-line-v"></div>
+          <div class="bg-court-circle"></div>
+        </div>
+      </div>
+
+      <!-- Mensaje popup -->
+      <div id="message-popup"></div>
+
+      <!-- Muñequita -->
+      <div id="basket">
+        <div class="doll-hair"></div>
+        <div class="doll-head">
+          <div class="doll-eyes">
+            <div class="doll-eye"></div>
+            <div class="doll-eye"></div>
+          </div>
+          <div class="doll-mouth"></div>
+        </div>
+        <div class="doll-arm left"></div>
+        <div class="doll-arm right"></div>
+        <div class="doll-body"></div>
+        <div class="doll-skirt"></div>
+        <div class="doll-legs">
+          <div>
+            <div class="doll-leg"></div>
+            <div class="doll-shoe"></div>
+          </div>
+          <div>
+            <div class="doll-leg"></div>
+            <div class="doll-shoe"></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══ PANTALLA 3: FINAL ══ -->
+  <div id="screen-end" class="screen">
+    <canvas id="confetti-canvas"></canvas>
+    <div class="end-content">
+      <div class="heart-final">❤️</div>
+      <h1 class="end-title">Te amo Marianita &lt;3</h1>
+      <p class="end-sub">Gracias por ser mi persona favorita 🥺</p>
+      <button class="btn-main" id="btn-replay">Jugar de nuevo 💕</button>
+    </div>
+  </div>
+
+  <script src="game.js"></script>
+</body>
+</html>

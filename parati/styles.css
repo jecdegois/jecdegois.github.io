@@ -1,0 +1,652 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: 'Nunito', sans-serif;
+}
+
+/* ── SCREENS ── */
+.screen {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+}
+.screen.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+/* ══════════════════════════════
+   INTRO
+══════════════════════════════ */
+#screen-intro {
+  background: linear-gradient(160deg, #1a0a2e 0%, #2d1b4e 60%, #1a0a2e 100%);
+  flex-direction: column;
+}
+
+.intro-arena {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+/* Techo del pabellón */
+.arena-ceiling {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 35%;
+  background: linear-gradient(180deg, #0d0520 0%, #1e0d3a 100%);
+}
+
+/* Luces del techo */
+.arena-lights {
+  position: absolute;
+  top: 8%;
+  left: 0; right: 0;
+  display: flex;
+  justify-content: space-around;
+  padding: 0 5%;
+}
+.arena-light {
+  width: 18px;
+  height: 18px;
+  background: radial-gradient(circle, #fff9c4 0%, #ffe082 40%, transparent 70%);
+  border-radius: 50%;
+  box-shadow: 0 0 20px 8px rgba(255,230,100,0.5), 0 0 60px 20px rgba(255,200,50,0.2);
+  animation: flicker 3s ease-in-out infinite;
+}
+.arena-light:nth-child(2) { animation-delay: 0.4s; }
+.arena-light:nth-child(3) { animation-delay: 0.8s; }
+.arena-light:nth-child(4) { animation-delay: 1.2s; }
+.arena-light:nth-child(5) { animation-delay: 0.6s; }
+
+/* Gradas */
+.arena-stands {
+  position: absolute;
+  top: 28%;
+  left: 0; right: 0;
+  height: 22%;
+  background: linear-gradient(180deg, #2a1550 0%, #3d2070 100%);
+  overflow: hidden;
+}
+.stands-row {
+  height: 20%;
+  display: flex;
+  align-items: center;
+  padding: 0 2%;
+  gap: 3px;
+}
+.stands-row:nth-child(odd)  { background: rgba(255,255,255,0.04); }
+.stands-row:nth-child(even) { background: rgba(255,255,255,0.02); }
+.stand-person {
+  width: 8px;
+  height: 8px;
+  border-radius: 50% 50% 0 0;
+  flex-shrink: 0;
+}
+
+/* Cancha de basket */
+.arena-court {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 52%;
+  background: #c8860a;
+  overflow: hidden;
+}
+
+/* Líneas de la cancha */
+.court-lines {
+  position: absolute;
+  inset: 0;
+}
+.court-center-line {
+  position: absolute;
+  top: 0; bottom: 0;
+  left: 50%;
+  width: 2px;
+  background: rgba(255,255,255,0.6);
+  transform: translateX(-50%);
+}
+.court-center-circle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 80px;
+  height: 80px;
+  border: 2px solid rgba(255,255,255,0.6);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+.court-three-left {
+  position: absolute;
+  top: 10%;
+  left: -30px;
+  width: 120px;
+  height: 80%;
+  border: 2px solid rgba(255,255,255,0.5);
+  border-radius: 0 60px 60px 0;
+  border-left: none;
+}
+.court-three-right {
+  position: absolute;
+  top: 10%;
+  right: -30px;
+  width: 120px;
+  height: 80%;
+  border: 2px solid rgba(255,255,255,0.5);
+  border-radius: 60px 0 0 60px;
+  border-right: none;
+}
+.court-paint-left {
+  position: absolute;
+  top: 25%;
+  left: 0;
+  width: 60px;
+  height: 50%;
+  border: 2px solid rgba(255,255,255,0.5);
+  border-left: none;
+  background: rgba(180,100,0,0.3);
+}
+.court-paint-right {
+  position: absolute;
+  top: 25%;
+  right: 0;
+  width: 60px;
+  height: 50%;
+  border: 2px solid rgba(255,255,255,0.5);
+  border-right: none;
+  background: rgba(180,100,0,0.3);
+}
+.court-logo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1.8rem;
+  opacity: 0.25;
+}
+
+/* Tableros de basket */
+.backboard {
+  position: absolute;
+  top: 5%;
+  width: 28px;
+  height: 18px;
+  background: rgba(255,255,255,0.85);
+  border: 2px solid #ccc;
+  border-radius: 2px;
+}
+.backboard-left  { left: 2px; }
+.backboard-right { right: 2px; }
+.hoop {
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 16px;
+  height: 8px;
+  border: 2px solid #e65100;
+  border-radius: 0 0 8px 8px;
+  border-top: none;
+}
+
+/* Intro content */
+.intro-content {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  background: rgba(10,0,30,0.65);
+  border-radius: 24px;
+  border: 1px solid rgba(255,100,180,0.3);
+  backdrop-filter: blur(6px);
+  max-width: 320px;
+  width: 88%;
+}
+
+.heart-big {
+  font-size: 4rem;
+  animation: heartbeat 1.2s ease-in-out infinite;
+}
+.title {
+  font-family: 'Dancing Script', cursive;
+  font-size: 2.2rem;
+  color: #ff9ec4;
+}
+.subtitle {
+  font-size: 1.1rem;
+  color: #f8bbd0;
+  line-height: 1.6;
+}
+
+/* ══════════════════════════════
+   BUTTON
+══════════════════════════════ */
+.btn-main {
+  margin-top: 0.5rem;
+  padding: 1rem 2.5rem;
+  font-size: 1.3rem;
+  font-family: 'Dancing Script', cursive;
+  font-weight: 700;
+  background: linear-gradient(135deg, #e91e8c, #c2185b);
+  color: white;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(233,30,140,0.5);
+  transition: transform 0.15s, box-shadow 0.15s;
+  min-height: 56px;
+}
+.btn-main:active {
+  transform: scale(0.95);
+  box-shadow: 0 3px 10px rgba(233,30,140,0.3);
+}
+
+/* ══════════════════════════════
+   GAME SCREEN
+══════════════════════════════ */
+#screen-game {
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  background: #0d0520;
+}
+
+#game-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.6rem 1.2rem;
+  background: rgba(0,0,0,0.7);
+  font-size: 1rem;
+  font-weight: 700;
+  color: #ff9ec4;
+  z-index: 10;
+  flex-shrink: 0;
+}
+#game-header span { font-family: 'Dancing Script', cursive; font-size: 1.2rem; }
+
+/* ── GAME AREA ── */
+#game-area {
+  position: relative;
+  flex: 1;
+  overflow: hidden;
+  touch-action: none;
+}
+
+/* ── BACKGROUND: PABELLÓN ── */
+#court-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+/* Techo oscuro */
+#court-bg .bg-ceiling {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 30%;
+  background: linear-gradient(180deg, #080215 0%, #150830 100%);
+}
+
+/* Luces del techo en el juego */
+#court-bg .bg-lights {
+  position: absolute;
+  top: 4%;
+  left: 0; right: 0;
+  display: flex;
+  justify-content: space-around;
+  padding: 0 8%;
+}
+#court-bg .bg-light {
+  width: 14px;
+  height: 14px;
+  background: radial-gradient(circle, #fffde7 0%, #ffe082 40%, transparent 70%);
+  border-radius: 50%;
+  box-shadow: 0 0 16px 6px rgba(255,220,80,0.5), 0 0 50px 15px rgba(255,180,30,0.15);
+  animation: flicker 3s ease-in-out infinite;
+}
+#court-bg .bg-light:nth-child(2) { animation-delay: 0.5s; }
+#court-bg .bg-light:nth-child(3) { animation-delay: 1s; }
+#court-bg .bg-light:nth-child(4) { animation-delay: 0.3s; }
+
+/* Gradas en el juego */
+#court-bg .bg-stands {
+  position: absolute;
+  top: 22%;
+  left: 0; right: 0;
+  height: 18%;
+  background: linear-gradient(180deg, #1e0d3a 0%, #2d1b55 100%);
+  overflow: hidden;
+}
+#court-bg .bg-stands-row {
+  height: 25%;
+  display: flex;
+  align-items: center;
+  padding: 0 1%;
+  gap: 2px;
+}
+#court-bg .bg-stands-row:nth-child(odd) { background: rgba(255,255,255,0.03); }
+#court-bg .bg-person {
+  width: 6px;
+  height: 6px;
+  border-radius: 50% 50% 0 0;
+  flex-shrink: 0;
+}
+
+/* Cancha */
+#court-bg .bg-court {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  top: 40%;
+  background: #b8750a;
+  overflow: hidden;
+}
+#court-bg .bg-court::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    90deg,
+    transparent,
+    transparent 40px,
+    rgba(0,0,0,0.06) 40px,
+    rgba(0,0,0,0.06) 41px
+  );
+}
+#court-bg .bg-court-line-h {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: rgba(255,255,255,0.5);
+}
+#court-bg .bg-court-line-v {
+  position: absolute;
+  top: 0; bottom: 0;
+  left: 50%;
+  width: 2px;
+  background: rgba(255,255,255,0.4);
+}
+#court-bg .bg-court-circle {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  width: 70px;
+  height: 70px;
+  border: 2px solid rgba(255,255,255,0.4);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* ── MUÑEQUITA ── */
+#basket {
+  position: absolute;
+  bottom: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 44px;
+  height: 80px;
+  user-select: none;
+  pointer-events: none;
+  transition: left 0.04s linear;
+}
+
+/* Cabeza */
+#basket .doll-head {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 28px;
+  height: 28px;
+  background: #f5c5a3;
+  border-radius: 50%;
+  border: 2px solid #e8a882;
+  z-index: 3;
+}
+/* Pelo */
+#basket .doll-hair {
+  position: absolute;
+  top: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 32px;
+  height: 18px;
+  background: #3d1f00;
+  border-radius: 50% 50% 0 0;
+  z-index: 4;
+}
+#basket .doll-hair::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: -2px;
+  width: 8px;
+  height: 14px;
+  background: #3d1f00;
+  border-radius: 0 0 4px 4px;
+}
+#basket .doll-hair::before {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  right: -2px;
+  width: 8px;
+  height: 14px;
+  background: #3d1f00;
+  border-radius: 0 0 4px 4px;
+}
+/* Ojos */
+#basket .doll-eyes {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 18px;
+  display: flex;
+  justify-content: space-between;
+  z-index: 5;
+}
+#basket .doll-eye {
+  width: 5px;
+  height: 5px;
+  background: #2c1a0e;
+  border-radius: 50%;
+}
+/* Boca */
+#basket .doll-mouth {
+  position: absolute;
+  top: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 10px;
+  height: 5px;
+  border: 2px solid #c0306a;
+  border-top: none;
+  border-radius: 0 0 6px 6px;
+  z-index: 5;
+}
+/* Cuerpo */
+#basket .doll-body {
+  position: absolute;
+  top: 26px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 26px;
+  height: 28px;
+  background: linear-gradient(180deg, #e91e8c 0%, #c2185b 100%);
+  border-radius: 4px 4px 6px 6px;
+  z-index: 2;
+}
+/* Falda */
+#basket .doll-skirt {
+  position: absolute;
+  top: 46px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 36px;
+  height: 16px;
+  background: linear-gradient(180deg, #c2185b 0%, #e91e8c 100%);
+  border-radius: 0 0 10px 10px;
+  clip-path: polygon(0 0, 100% 0, 110% 100%, -10% 100%);
+  z-index: 2;
+}
+/* Piernas */
+#basket .doll-legs {
+  position: absolute;
+  top: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 22px;
+  display: flex;
+  justify-content: space-between;
+  z-index: 1;
+}
+#basket .doll-leg {
+  width: 7px;
+  height: 14px;
+  background: #f5c5a3;
+  border-radius: 0 0 4px 4px;
+}
+/* Zapatos */
+#basket .doll-shoe {
+  width: 9px;
+  height: 5px;
+  background: #c2185b;
+  border-radius: 2px 4px 4px 2px;
+  margin-top: -1px;
+}
+/* Brazos */
+#basket .doll-arm {
+  position: absolute;
+  top: 30px;
+  width: 8px;
+  height: 20px;
+  background: #e91e8c;
+  border-radius: 4px;
+  z-index: 1;
+}
+#basket .doll-arm.left  { left: 2px;  transform: rotate(20deg); }
+#basket .doll-arm.right { right: 2px; transform: rotate(-20deg); }
+
+/* Animación de caminar */
+#basket.walking .doll-arm.left  { animation: arm-swing 0.4s ease-in-out infinite alternate; }
+#basket.walking .doll-arm.right { animation: arm-swing 0.4s ease-in-out infinite alternate-reverse; }
+
+/* ── FALLING ITEMS ── */
+.falling-item {
+  position: absolute;
+  font-size: 2rem;
+  user-select: none;
+  pointer-events: none;
+  animation: fall linear forwards;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.4));
+}
+
+/* ── MESSAGE POPUP ── */
+#message-popup {
+  position: absolute;
+  top: 15%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.5rem;
+  color: #fff;
+  background: rgba(200,0,100,0.85);
+  padding: 0.4rem 1.2rem;
+  border-radius: 20px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+  white-space: nowrap;
+  box-shadow: 0 4px 15px rgba(200,0,100,0.4);
+  z-index: 20;
+}
+#message-popup.show { opacity: 1; }
+
+/* ══════════════════════════════
+   END SCREEN
+══════════════════════════════ */
+#screen-end {
+  background: linear-gradient(160deg, #1a0a2e 0%, #2d1b4e 60%, #1a0a2e 100%);
+  flex-direction: column;
+}
+
+#confetti-canvas {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.end-content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2rem;
+  background: rgba(10,0,30,0.7);
+  border-radius: 24px;
+  border: 1px solid rgba(255,100,180,0.3);
+  backdrop-filter: blur(6px);
+  max-width: 320px;
+  width: 88%;
+}
+
+.heart-final {
+  font-size: 5rem;
+  animation: heartbeat 0.8s ease-in-out infinite;
+}
+.end-title {
+  font-family: 'Dancing Script', cursive;
+  font-size: 2.6rem;
+  color: #ff9ec4;
+  line-height: 1.2;
+}
+.end-sub {
+  font-size: 1.1rem;
+  color: #f8bbd0;
+}
+
+/* ══════════════════════════════
+   KEYFRAMES
+══════════════════════════════ */
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  50%       { transform: scale(1.18); }
+}
+
+@keyframes fall {
+  0%   { transform: translateY(0) rotate(0deg);   opacity: 1; }
+  100% { transform: translateY(110vh) rotate(30deg); opacity: 0.7; }
+}
+
+@keyframes flicker {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.75; }
+}
+
+@keyframes arm-swing {
+  from { transform: rotate(20deg); }
+  to   { transform: rotate(-20deg); }
+}
