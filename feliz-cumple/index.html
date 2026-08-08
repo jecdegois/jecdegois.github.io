@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="theme-color" content="#2a1040" />
+  <title>Feliz cumpleaños, Marianita 🎂</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- Muñequita reutilizable -->
+  <template id="tpl-nina">
+    <div class="nina">
+      <div class="nina-pelo"></div>
+      <div class="nina-cara">
+        <div class="nina-pollina"></div>
+        <div class="nina-ojos">
+          <span class="nina-ojo"></span>
+          <span class="nina-ojo"></span>
+        </div>
+        <div class="nina-mejillas"><span></span><span></span></div>
+        <div class="nina-boca"></div>
+      </div>
+      <div class="nina-brazo izq"></div>
+      <div class="nina-brazo der"></div>
+      <div class="nina-torso"></div>
+      <div class="nina-falda"></div>
+      <div class="nina-piernas">
+        <div class="nina-pierna"><i></i><b></b></div>
+        <div class="nina-pierna"><i></i><b></b></div>
+      </div>
+    </div>
+  </template>
+
+  <!-- ══════════ PANTALLA 1: INTRO ══════════ -->
+  <section id="screen-intro" class="screen active">
+    <div class="deco-globos" id="deco-globos" aria-hidden="true"></div>
+
+    <div class="card intro-card">
+      <div class="intro-nina" id="intro-nina" aria-hidden="true"></div>
+      <p class="eyebrow">8 de agosto</p>
+      <h1 class="title">¡Feliz cumpleaños,<br />Marianita!</h1>
+      <p class="subtitle">
+        Hoy el mundo celebra el día en que llegaste,
+        y yo celebro la suerte de tenerte.
+        <strong>Te amo muchísimo.</strong>
+      </p>
+      <p class="hint">
+        Te preparé un juego que se que te gustan para que lo disfrutes y planees tu dia perfecto 💗<br />
+        Responde y ve avanzando en el mapa.
+      </p>
+      <button class="btn-main" id="btn-play">Empezar la aventura</button>
+    </div>
+  </section>
+
+  <!-- ══════════ PANTALLA 2: MAPA + PREGUNTAS ══════════ -->
+  <section id="screen-game" class="screen">
+    <header id="game-header">
+      <span class="game-title">Nuestro paseo por Valencia</span>
+      <span class="game-step">Parada <b id="paso-actual">1</b> de <b id="paso-total">6</b></span>
+    </header>
+
+    <div class="barra"><div class="barra-fill" id="barra-fill"></div></div>
+
+    <div class="game-layout">
+      <div id="mapa" aria-hidden="true">
+        <div class="mapa-cielo">
+          <div class="nube n1"></div>
+          <div class="nube n2"></div>
+          <div class="nube n3"></div>
+          <div class="sol"></div>
+        </div>
+        <div class="mapa-cerros">
+          <span class="cerro c1"></span>
+          <span class="cerro c2"></span>
+          <span class="cerro c3"></span>
+        </div>
+        <div class="mapa-skyline" id="mapa-skyline"></div>
+        <div class="mapa-suelo"></div>
+
+        <svg class="mapa-camino" viewBox="0 0 100 100" preserveAspectRatio="none">
+          <path id="camino-base" fill="none" />
+          <path id="camino-hecho" fill="none" />
+        </svg>
+
+        <div id="paradas"></div>
+        <div id="peona"></div>
+      </div>
+
+      <div class="card pregunta-card">
+        <p class="pregunta-num" id="pregunta-num">Pregunta 1 de 6</p>
+        <h2 class="pregunta-texto" id="pregunta-texto" aria-live="polite"></h2>
+        <div class="opciones" id="opciones"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ PANTALLA 3: FINAL ══════════ -->
+  <section id="screen-end" class="screen">
+    <canvas id="confetti-canvas" aria-hidden="true"></canvas>
+
+    <div class="end-scroll">
+      <div class="card end-card">
+        <div class="end-nina" id="end-nina" aria-hidden="true"></div>
+        <div class="corazon-final" aria-hidden="true">❤️</div>
+        <h2 class="end-kicker">El juego terminó</h2>
+        <p class="end-text">
+          Pero lo nuestro no. Gracias por existir, por tu risa, por tu sonrisa,
+          por lo bonito que se siente estar contigo hasta cuando no hacemos nada.
+          Te amo más de lo que caben en un juego, en un mapa y en esta ciudad.
+        </p>
+        <blockquote class="frase">
+          Tienes los ojos más bonitos del mundo y tienes el mundo más bonito en tus ojos
+        </blockquote>
+
+        <label class="extra-label" for="extra">¿Algo más que quieras decirme? (opcional)</label>
+        <textarea id="extra" class="extra-input" rows="3" placeholder="Escríbeme aquí..."></textarea>
+
+        <p class="end-nota">Toca el botón y me llega todo por WhatsApp 💌</p>
+        <a class="btn-main" id="btn-wa" href="#" target="_blank" rel="noopener">Mandarle esto a Chely 💬</a>
+        <button class="btn-sec oculto" id="btn-copiar">Copiar respuestas</button>
+        <p class="aviso" id="aviso" role="status"></p>
+        <button class="btn-link" id="btn-replay">Jugar de nuevo</button>
+      </div>
+    </div>
+  </section>
+
+  <script src="game.js"></script>
+</body>
+</html>
