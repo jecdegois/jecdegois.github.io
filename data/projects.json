@@ -1,5 +1,5 @@
 {
-  "version": "2026.08.15-1",
+  "version": "2026.08.16-1",
   "profile": {
     "name": "Jose Castro",
     "handle": "jecdegois",
@@ -34,7 +34,7 @@
       "year": 2026,
       "role": "Backend Engineer",
       "summary": "Double-entry accounting engine with idempotent transaction posting and audit trails.",
-      "description": "A ledger service built around immutable journal entries. Every posting is idempotent by construction, so retries and network failures never corrupt balances. Balances are derived projections, not stored counters, which removes an entire class of drift bugs.",
+      "description": "A ledger service built around immutable journal entries. Every posting is idempotent by construction, so retries and network failures never corrupt balances. Balances are der[...]",
       "highlights": [
         "Idempotency keys enforced at the database level, not in application code",
         "Balances computed as projections over an append-only journal",
@@ -53,7 +53,7 @@
       "year": 2026,
       "role": "Frontend Lead",
       "summary": "Accessible component library with zero runtime CSS-in-JS and full keyboard coverage.",
-      "description": "A component library designed to ship less JavaScript. Styling lives in plain CSS with custom properties for theming, so there is no runtime style computation. Every interactive component was tested against keyboard-only and screen reader flows before release.",
+      "description": "A component library designed to ship less JavaScript. Styling lives in plain CSS with custom properties for theming, so there is no runtime style computation. Every interacti[...]",
       "highlights": [
         "No runtime styling cost — tokens are CSS custom properties",
         "WCAG 2.2 AA verified on every interactive component",
@@ -72,7 +72,7 @@
       "year": 2025,
       "role": "Full Stack",
       "summary": "CI observability dashboard that surfaces flaky tests before they block a release.",
-      "description": "Ingests CI run metadata and scores test flakiness over time. Instead of a wall of red, the dashboard answers one question: which tests are actually unreliable, and how much time are they costing the team?",
+      "description": "Ingests CI run metadata and scores test flakiness over time. Instead of a wall of red, the dashboard answers one question: which tests are actually unreliable, and how much t[...]",
       "highlights": [
         "Flakiness scored on a rolling window, not a single run",
         "Streaming ingestion with backpressure handling",
@@ -91,7 +91,7 @@
       "year": 2025,
       "role": "Author",
       "summary": "CLI that maps a codebase into a dependency graph you can actually read.",
-      "description": "Static analysis tool that walks a project and emits a layered dependency graph, flagging cycles and boundary violations. Built to make architectural drift visible in review instead of discovering it during a rewrite.",
+      "description": "Static analysis tool that walks a project and emits a layered dependency graph, flagging cycles and boundary violations. Built to make architectural drift visible in review i[...]",
       "highlights": [
         "Detects import cycles and hexagonal boundary violations",
         "Outputs Mermaid, JSON, or a terminal summary",
@@ -110,7 +110,7 @@
       "year": 2024,
       "role": "Solo",
       "summary": "Offline-first focus timer. No account, no sync, no tracking.",
-      "description": "A focus timer that works entirely offline through a service worker and stores sessions locally. Deliberately has no backend — the whole point was to prove how much a well-built static app can do without one.",
+      "description": "A focus timer that works entirely offline through a service worker and stores sessions locally. Deliberately has no backend — the whole point was to prove how much a well-[...]",
       "highlights": [
         "Fully functional with no network connection",
         "State persisted locally, exportable as JSON",
@@ -136,6 +136,25 @@
         "Adapters for PostgreSQL and in-memory suites"
       ],
       "tags": ["TypeScript", "PostgreSQL", "Testing"],
+      "featured": false,
+      "links": {
+        "repo": "https://github.com/jecdegois",
+        "demo": ""
+      }
+    },
+    {
+      "id": "teslo-shop",
+      "title": "Teslo Shop",
+      "year": 2026,
+      "role": "Full Stack",
+      "summary": "E-commerce storefront built with Next.js using the App Router.",
+      "description": "A storefront and admin for an online shop built with Next.js (App Router). Uses server components for fast initial loads and client components for interactive flows. Implemented in TypeScript with pragmatic, SEO-friendly routing.",
+      "highlights": [
+        "Built with Next.js App Router and server components",
+        "Type-safe data fetching and routing in TypeScript",
+        "Optimized for performance and SEO"
+      ],
+      "tags": ["TypeScript", "Next.js", "React"],
       "featured": false,
       "links": {
         "repo": "https://github.com/jecdegois",
