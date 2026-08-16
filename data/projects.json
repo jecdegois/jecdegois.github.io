@@ -1,5 +1,5 @@
 {
-  "version": "2026.08.16-1",
+  "version": "2026.08.16-2",
   "profile": {
     "name": "Jose Castro",
     "handle": "jecdegois",
@@ -146,13 +146,13 @@
       "id": "teslo-shop",
       "title": "Teslo Shop",
       "year": 2026,
-      "role": "Full Stack",
-      "summary": "E-commerce storefront built with Next.js using the App Router.",
-      "description": "A storefront and admin for an online shop built with Next.js (App Router). Uses server components for fast initial loads and client components for interactive flows. Implemented in TypeScript with pragmatic, SEO-friendly routing.",
+      "role": "Desarrollador Full Stack",
+      "summary": "Tienda en línea construida con Next.js usando App Router.",
+      "description": "Tienda y panel de administración para una tienda en línea construido con Next.js (App Router). Usa componentes de servidor para cargas iniciales rápidas y componentes cliente para flujos interactivos. Implementado en TypeScript con enrutamiento amigable para SEO y optimizaciones de rendimiento.",
       "highlights": [
-        "Built with Next.js App Router and server components",
-        "Type-safe data fetching and routing in TypeScript",
-        "Optimized for performance and SEO"
+        "Construido con Next.js App Router y componentes de servidor",
+        "Fetch y enrutamiento tipados en TypeScript",
+        "Optimizado para rendimiento y SEO"
       ],
       "tags": ["TypeScript", "Next.js", "React"],
       "featured": false,
