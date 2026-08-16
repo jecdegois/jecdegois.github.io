@@ -1,17 +1,221 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en" data-theme="auto">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Jecdegois</title>
-    <link rel="stylesheet" href="estilos.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Jose Castro — Software Developer</title>
+    <meta
+      name="description"
+      content="Portfolio of Jose Castro, software developer. Selected work in backend systems, developer tooling, and the web platform."
+    />
+    <meta name="theme-color" content="#f3f0e8" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0f0e0c" media="(prefers-color-scheme: dark)" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Jose Castro — Software Developer" />
+    <meta
+      property="og:description"
+      content="Selected work in backend systems, developer tooling, and the web platform."
+    />
+    <meta property="og:url" content="https://jecdegois.github.io/" />
+    <meta name="twitter:card" content="summary" />
+
+    <link rel="canonical" href="https://jecdegois.github.io/" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%23c8351c'/><text x='50' y='72' font-size='62' font-family='Georgia,serif' fill='%23f3f0e8' text-anchor='middle'>j</text></svg>"
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
+    />
+    <link rel="preload" as="fetch" href="data/projects.json" />
+    <link rel="stylesheet" href="css/styles.css" />
+
+    <script>
+      // Applied before first paint so the theme never flashes.
+      try {
+        var t = localStorage.getItem("portfolio:theme");
+        if (t === "light" || t === "dark") document.documentElement.dataset.theme = t;
+      } catch (e) {}
+    </script>
   </head>
+
   <body>
-    <h1>Hola! :)</h1>
-    <h3>
-      En este momento estoy trabajando en esta web, vuelve dentro de pronto para
-      que veas algo increible!
-    </h3>
+    <a class="skip-link" href="#work">Skip to work</a>
+
+    <div class="grain" aria-hidden="true"></div>
+
+    <header class="masthead">
+      <a class="masthead__mark" href="#top" aria-label="Home">
+        <span class="masthead__glyph">j</span>
+        <span class="masthead__name" data-bind="handle">jecdegois</span>
+      </a>
+
+      <nav class="masthead__nav" aria-label="Sections">
+        <a href="#work">Work</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <button
+        class="theme-toggle"
+        type="button"
+        id="theme-toggle"
+        aria-label="Switch color theme"
+      >
+        <span class="theme-toggle__dot" aria-hidden="true"></span>
+        <span class="theme-toggle__label" id="theme-label">auto</span>
+      </button>
+    </header>
+
+    <main id="top">
+      <!-- ─────────── HERO ─────────── -->
+      <section class="hero">
+        <p class="hero__eyebrow stagger" style="--i: 0">
+          <span class="status" data-bind="status-dot" hidden></span>
+          <span data-bind="availability">Portfolio</span>
+          <span class="hero__rule" aria-hidden="true"></span>
+          <span data-bind="location"></span>
+        </p>
+
+        <h1 class="hero__title stagger" style="--i: 1">
+          <span class="hero__line" data-bind="name">Jose Castro</span>
+          <em class="hero__line hero__line--em" data-bind="role">Software Developer</em>
+        </h1>
+
+        <p class="hero__lede stagger" style="--i: 2" data-bind="tagline"></p>
+
+        <div class="hero__actions stagger" style="--i: 3">
+          <a class="btn btn--solid" href="#work">
+            Selected work
+            <span aria-hidden="true">↓</span>
+          </a>
+          <a class="btn" data-bind="link-github" href="#" rel="noopener">GitHub</a>
+        </div>
+
+        <div class="hero__index stagger" style="--i: 4" aria-hidden="true">
+          <span data-bind="count-projects">—</span>
+          <span>projects</span>
+          <span class="hero__rule"></span>
+          <span data-bind="count-tags">—</span>
+          <span>technologies</span>
+        </div>
+      </section>
+
+      <!-- ─────────── TICKER ─────────── -->
+      <div class="ticker" aria-hidden="true">
+        <div class="ticker__track" id="ticker-track"></div>
+      </div>
+
+      <!-- ─────────── WORK ─────────── -->
+      <section class="section" id="work">
+        <div class="section__head">
+          <h2 class="section__title">Selected work</h2>
+          <p class="section__meta">
+            <span data-bind="visible-count">—</span> shown
+          </p>
+        </div>
+
+        <div class="filters" role="group" aria-label="Filter projects by technology">
+          <div class="filters__scroll" id="filters"></div>
+        </div>
+
+        <div class="bento" id="bento" aria-live="polite" aria-busy="true">
+          <!-- Skeletons: replaced on first render -->
+          <article class="card card--skeleton" aria-hidden="true"></article>
+          <article class="card card--skeleton" aria-hidden="true"></article>
+          <article class="card card--skeleton" aria-hidden="true"></article>
+        </div>
+
+        <p class="empty" id="empty" hidden>
+          Nothing matches that filter.
+          <button type="button" class="link-btn" data-clear-filter>Show everything</button>
+        </p>
+
+        <noscript>
+          <p class="empty">
+            This portfolio loads its projects from
+            <code>data/projects.json</code>. Enable JavaScript, or read the raw file
+            directly.
+          </p>
+        </noscript>
+      </section>
+
+      <!-- ─────────── ABOUT ─────────── -->
+      <section class="section section--about" id="about">
+        <div class="about">
+          <div class="about__col">
+            <h2 class="section__title">About</h2>
+            <p class="about__body" data-bind="bio"></p>
+          </div>
+          <div class="about__col about__col--stack">
+            <h3 class="about__label">Stack</h3>
+            <ul class="stack" id="stack"></ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- ─────────── CONTACT ─────────── -->
+      <section class="section section--contact" id="contact">
+        <h2 class="contact__title">
+          Let's build<br /><em>something good.</em>
+        </h2>
+        <ul class="contact__links" id="contact-links"></ul>
+      </section>
+    </main>
+
+    <footer class="colophon">
+      <p>
+        <span data-bind="year">2026</span> —
+        <span data-bind="name-footer">Jose Castro</span>
+      </p>
+      <p class="colophon__tech">
+        Hand-written HTML, CSS and JavaScript. No framework, no build step.
+        <span class="colophon__ver" data-bind="data-version"></span>
+      </p>
+    </footer>
+
+    <!-- ─────────── PROJECT DETAIL ─────────── -->
+    <dialog class="sheet" id="sheet" aria-labelledby="sheet-title">
+      <article class="sheet__inner">
+        <header class="sheet__head">
+          <p class="sheet__meta">
+            <span id="sheet-year"></span>
+            <span class="hero__rule" aria-hidden="true"></span>
+            <span id="sheet-role"></span>
+          </p>
+          <h2 class="sheet__title" id="sheet-title"></h2>
+          <button class="sheet__close" type="button" id="sheet-close" aria-label="Close">
+            <span aria-hidden="true">✕</span>
+          </button>
+        </header>
+
+        <p class="sheet__body" id="sheet-description"></p>
+
+        <h3 class="sheet__label" id="sheet-highlights-label" hidden>Notable</h3>
+        <ul class="sheet__list" id="sheet-highlights"></ul>
+
+        <ul class="tags tags--lg" id="sheet-tags"></ul>
+
+        <div class="sheet__actions" id="sheet-actions"></div>
+      </article>
+    </dialog>
+
+    <!-- ─────────── UPDATE TOAST ─────────── -->
+    <div class="toast" id="toast" role="status" aria-live="polite" hidden>
+      <span class="toast__dot" aria-hidden="true"></span>
+      <span id="toast-text">Content updated</span>
+    </div>
+
+    <script src="js/main.js" defer></script>
   </body>
 </html>

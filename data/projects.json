@@ -1,0 +1,146 @@
+{
+  "version": "2026.08.15-1",
+  "profile": {
+    "name": "Jose Castro",
+    "handle": "jecdegois",
+    "role": "Software Developer",
+    "location": "Venezuela",
+    "available": true,
+    "availableLabel": "Available for work",
+    "tagline": "I build software that stays out of the way.",
+    "bio": "Software developer focused on the web platform. I care about interfaces that load fast, code that reads clearly, and systems that are still understandable six months later.",
+    "stack": [
+      "TypeScript",
+      "JavaScript",
+      "React",
+      "Node.js",
+      "PostgreSQL",
+      "Docker",
+      "Go",
+      "CSS",
+      "Testing",
+      "Clean Architecture"
+    ],
+    "links": {
+      "email": "jecdegois12345@gmail.com",
+      "github": "https://github.com/jecdegois",
+      "linkedin": "https://www.linkedin.com/in/jecdegois"
+    }
+  },
+  "projects": [
+    {
+      "id": "ledger-core",
+      "title": "Ledger Core",
+      "year": 2026,
+      "role": "Backend Engineer",
+      "summary": "Double-entry accounting engine with idempotent transaction posting and audit trails.",
+      "description": "A ledger service built around immutable journal entries. Every posting is idempotent by construction, so retries and network failures never corrupt balances. Balances are derived projections, not stored counters, which removes an entire class of drift bugs.",
+      "highlights": [
+        "Idempotency keys enforced at the database level, not in application code",
+        "Balances computed as projections over an append-only journal",
+        "Property-based tests covering concurrent posting scenarios"
+      ],
+      "tags": ["Go", "PostgreSQL", "Testing"],
+      "featured": true,
+      "links": {
+        "repo": "https://github.com/jecdegois",
+        "demo": ""
+      }
+    },
+    {
+      "id": "atlas-ui",
+      "title": "Atlas UI",
+      "year": 2026,
+      "role": "Frontend Lead",
+      "summary": "Accessible component library with zero runtime CSS-in-JS and full keyboard coverage.",
+      "description": "A component library designed to ship less JavaScript. Styling lives in plain CSS with custom properties for theming, so there is no runtime style computation. Every interactive component was tested against keyboard-only and screen reader flows before release.",
+      "highlights": [
+        "No runtime styling cost — tokens are CSS custom properties",
+        "WCAG 2.2 AA verified on every interactive component",
+        "Tree-shakeable, no barrel-file imports"
+      ],
+      "tags": ["TypeScript", "React", "CSS"],
+      "featured": true,
+      "links": {
+        "repo": "https://github.com/jecdegois",
+        "demo": ""
+      }
+    },
+    {
+      "id": "pipeline-radar",
+      "title": "Pipeline Radar",
+      "year": 2025,
+      "role": "Full Stack",
+      "summary": "CI observability dashboard that surfaces flaky tests before they block a release.",
+      "description": "Ingests CI run metadata and scores test flakiness over time. Instead of a wall of red, the dashboard answers one question: which tests are actually unreliable, and how much time are they costing the team?",
+      "highlights": [
+        "Flakiness scored on a rolling window, not a single run",
+        "Streaming ingestion with backpressure handling",
+        "Slack digest with the three worst offenders each morning"
+      ],
+      "tags": ["Node.js", "TypeScript", "Docker"],
+      "featured": false,
+      "links": {
+        "repo": "https://github.com/jecdegois",
+        "demo": ""
+      }
+    },
+    {
+      "id": "cartographer",
+      "title": "Cartographer",
+      "year": 2025,
+      "role": "Author",
+      "summary": "CLI that maps a codebase into a dependency graph you can actually read.",
+      "description": "Static analysis tool that walks a project and emits a layered dependency graph, flagging cycles and boundary violations. Built to make architectural drift visible in review instead of discovering it during a rewrite.",
+      "highlights": [
+        "Detects import cycles and hexagonal boundary violations",
+        "Outputs Mermaid, JSON, or a terminal summary",
+        "Runs in CI as a hard gate on layer violations"
+      ],
+      "tags": ["Go", "Clean Architecture"],
+      "featured": false,
+      "links": {
+        "repo": "https://github.com/jecdegois",
+        "demo": ""
+      }
+    },
+    {
+      "id": "quiet-hours",
+      "title": "Quiet Hours",
+      "year": 2024,
+      "role": "Solo",
+      "summary": "Offline-first focus timer. No account, no sync, no tracking.",
+      "description": "A focus timer that works entirely offline through a service worker and stores sessions locally. Deliberately has no backend — the whole point was to prove how much a well-built static app can do without one.",
+      "highlights": [
+        "Fully functional with no network connection",
+        "State persisted locally, exportable as JSON",
+        "Under 30 KB over the wire"
+      ],
+      "tags": ["JavaScript", "CSS", "PWA"],
+      "featured": false,
+      "links": {
+        "repo": "https://github.com/jecdegois",
+        "demo": ""
+      }
+    },
+    {
+      "id": "seedbox",
+      "title": "Seedbox",
+      "year": 2024,
+      "role": "Backend",
+      "summary": "Deterministic test data factory that keeps fixtures honest across services.",
+      "description": "Generates realistic, referentially-consistent test data from schema definitions. Seeded by a fixed key, so a failing test in CI reproduces byte-for-byte on a laptop.",
+      "highlights": [
+        "Deterministic output from a seed — reproducible failures",
+        "Respects foreign keys and domain constraints",
+        "Adapters for PostgreSQL and in-memory suites"
+      ],
+      "tags": ["TypeScript", "PostgreSQL", "Testing"],
+      "featured": false,
+      "links": {
+        "repo": "https://github.com/jecdegois",
+        "demo": ""
+      }
+    }
+  ]
+}
